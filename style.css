@@ -7,7 +7,7 @@
 body {
     font-size: 20px;
     font-family: 'Lato', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: black;
+    color: rgb(255, 255, 255);
     background-color: black;
     font-weight: bolder;
     text-align: center;
@@ -15,7 +15,37 @@ body {
 }
 
 
+.title {
+    padding: 20px;
+}
+
+.qplist {
+    list-style: none;
+    
+}
+
+.qplist li {
+    padding: 10px;
+    
+    
+}
+
+.qplist li a{
+    text-decoration: none;
+    color : black;
+}
+
+.qplist li a:visited {
+    color: red;
+}
+
+
+.qplist li a:hover {
+    color: rgb(187, 255, 0);
+}
+
 .wrapper {
+    color: rgb(0, 0, 0);
     display: flex;
     flex-flow: column wrap;
     justify-content: center;

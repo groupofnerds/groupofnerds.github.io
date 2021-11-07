@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GON Official</title>
 </head>
+
 <body>
-    <h1 class = "msg">Welcome to GON Official website, we are currently under development. <br>Looking forward to see you for term 1 preparation!!</h1>
+    <div class="maincontent">
+        <div class="top-section">
+            <div class="question-papers">
+
+            </div>
+            <div class="resources">
+
+            </div>
+        </div>
+        <div class="bottom-section">
+            <div class="events">
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap');
 
@@ -16,13 +41,24 @@
             font-family: 'Lato', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             color: #fff;
             background-color: black;
+            font-weight: bolder;
+            text-align: center;
+
+        }
+
+        .maincontent {
             display: flex;
             flex-direction: column;
-            font-weight: bolder;
-            background-image: url(/GON\ LOGO.png);
-            background-position: center;
-            background-repeat: no-repeat;
-            text-align: center;
+        }
+
+        .top-section .bottom-section .question-papers .resources {
+            flex: 1;
+            height: 100%;
+        }
+
+        .top-section {
+            display: flex;
+            flex-direction: row;
 
         }
 
@@ -34,8 +70,6 @@
             margin-left: 5%;
             margin-right: 5%;
         }
-
-        
     </style>
 </body>
 

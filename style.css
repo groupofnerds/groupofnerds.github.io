@@ -1,0 +1,60 @@
+ @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-size: 20px;
+    font-family: 'Lato', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;
+    background-color: black;
+    font-weight: bolder;
+    text-align: center;
+
+}
+
+
+.wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.wrapper>*{
+    padding: 10px;
+    margin: 10px;
+    
+}
+
+.qps, .res, .bottom-section {
+    border: 2px solid orange;
+    border-radius: 25px;
+    background-color: orange;
+}
+
+.top-section {
+    display: flex;
+    margin: 0;
+}
+.bottom-section {
+    display: flex;
+    align-items: center;
+}
+.top-section, .bottom-section {
+    flex: 1;
+    align-items: center;
+}
+
+.qps, .res {
+    flex: 1;
+    align-items: center;
+    height: 100%;
+    margin: 10px;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+}

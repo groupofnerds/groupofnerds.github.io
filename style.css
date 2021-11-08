@@ -1,4 +1,5 @@
  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,6 +15,13 @@ body {
 
 }
 
+
+:root {
+    --primary: #ff7227;
+    --secondary: #946f6c;
+    --tertiary: #ffffff;
+    --fourth: #5e250b;
+}
 
 .title {
     padding: 20px;
@@ -36,12 +44,12 @@ body {
 }
 
 .qplist li a:visited {
-    color: red;
+    color: var(--fourth);
 }
 
 
 .qplist li a:hover {
-    color: rgb(187, 255, 0);
+    color: var(--secondary)
 }
 
 .wrapper {
@@ -61,18 +69,25 @@ body {
 }
 
 .qps, .res, .bottom-section {
-    border: 2px solid orange;
+    border: 2px solid var(--primary);
     border-radius: 25px;
-    background-color: orange;
+    background-color: var(--primary);
 }
 
 .top-section {
     display: flex;
     margin: 0;
+    width: 100%;
 }
 .bottom-section {
+    font-family: 'Press Start 2P', cursive;
+    font-size: larger;
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-left: 2;
+
 }
 .top-section, .bottom-section {
     flex: 1;

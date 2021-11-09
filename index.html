@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GON Official</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1 class = "msg">Welcome to GON Official website, we are currently under development. <br>Looking forward to see you for term 1 preparation!!</h1>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap');
+    <div class="title">
+        <h1>GON</h1>
+    </div>
+    <div class="wrapper">
+        <div class="top-section">
+            <div class="qps">
+                <ul class="qplist">
+                    <li>
+                        <a href="/QBCTSS.html">Social Science Question Paper 1</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="res">
+                <ul class="qplist">
+                    <li>
+                        To Be updated soon
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom-section">
+            <script>
+                const d = new Date();
+                const b = new Date('11/30/2021');
+                k = b - d;
+                document.write(Math.ceil((Math.abs(k))/ (1000 * 60 * 60 * 24)));
+            </script> days until Boards!!
+        </div>
+    </div>
 
-        body {
-            font-size: 20px;
-            font-family: 'Lato', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            color: #fff;
-            background-color: black;
-            display: flex;
-            flex-direction: column;
-            font-weight: bolder;
-            background-image: url(/GON\ LOGO.png);
-            background-position: center;
-            background-repeat: no-repeat;
-            text-align: center;
 
-        }
 
-        .msg {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-left: 5%;
-            margin-right: 5%;
-        }
 
-        
-    </style>
+
+
+
+
 </body>
 
 </html>

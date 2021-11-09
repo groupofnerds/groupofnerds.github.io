@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sample Paper 1 for Term 1</title>
+    </head>
+    <body>
+        
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap');
+    body{
+        font-size: 20px;
+        font-family: 'Lato', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color: #fff;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        font-weight: bolder;
+
+    }
+
+    .wrapper-open{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    .question{
+        font-weight: 600;
+        margin: 50px;
+    }
+    .answers {
+    margin-bottom: 20px;
+    margin: 50px;
+    }
+    .answers label{
+    cursor: pointer;
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+    }
+    .answers label:hover{
+        color: aqua;
+    }
+    #submit{
+        margin: 50px;
+        font-family: sans-serif;
+        font-size: 20px;
+        background-color: #279;
+        color: #fff;
+        border: 0px;
+        border-radius: 3px;
+        padding: 20px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+    #submit:hover{
+        background-color: #38a;
+    }
+    #results {
+        margin: 50px;
+    }
+
+    #quiz {
+        width: 100%;
+    }
+
+    footer {
+        margin-bottom: 10px;
+    }
+
+    a:link {
+        color: white;
+
+    }
+
+    a:visited {
+        color: white;
+    }
+
+    .timeup #results{
+        text-align: center;
+    }
+
+    #timer {
+        text-align: center;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    #maincontent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        position: sticky;
+        top: 0px;
+        width: 100vw;
+        background-color: black;
+    }
+        </style>
+        <div id="maincontent">
+        <header>
+        <h1>Sample Paper 1 for Term 1 | GON </h1><div id="timer"></div></header>
+        <div id="quiz"></div>
+        <button id="submit">Submit Quiz</button>
+        <div id="results"></div>
+        <br><br>
+        <footer><i>Made by QB an autonomous testing software developed by <a href="https://github.com/ManukrishnanP">@ManukrishnanP</a></i></footer>
+        </div><div id="wrapper"></div>
+        <script>
+            function buildQuiz() {
+                // variable to store the HTML output
+                const output = [];
+
+                // for each question...
+                myQuestions.forEach(
+                    (currentQuestion, questionNumber) => {
+
+                        // variable to store the list of possible answers
+                        const answers = [];
+
+                        // and for each available answer...
+                        for (letter in currentQuestion.answers) {
+
+                            // ...add an HTML radio button
+                            answers.push(
+                                `<label>
+                                            <input type="radio" name="question${questionNumber}" value="${letter}">
+                                            ${letter}) 
+                                            ${currentQuestion.answers[letter]}
+                                            </label>`
+                            );
+                        }
+
+                        // add this question and its answers to the output
+                        output.push(
+                            `<div class="question"> ${currentQuestion.question} </div>
+                <div class="answers"> ${answers.join('')} </div>`
+                        );
+                    }
+                );
+
+                // finally combine our output list into one string of HTML and put it on the page
+                quizContainer.innerHTML = output.join('');
+            }
+
+            function blankContainer(){
+                correctanswer = showResults()
+                maincontent = document.getElementById("maincontent")
+                maincontent.innerHTML = ""
+                body = document.getElementById("wrapper");
+                body.classList.add("wrapper-open")
+                body.innerHTML = `<div class = "timeup">Your time is up, try to be honest and see your mark here: <div id='results'>${correctanswer}/${myQuestions.length}</div></div>`
+                
+            }
+
+            function showResults() {
+                clearInterval(intervalId);
+                document.getElementById("submit").disabled = true
+                // gather answer containers from our quiz
+                const answerContainers = quizContainer.querySelectorAll('.answers');
+
+                // keep track of user's answers
+                let numCorrect = 0;
+
+                // for each question...
+                myQuestions.forEach((currentQuestion, questionNumber) => {
+
+                    // find selected answer
+                    const answerContainer = answerContainers[questionNumber];
+                    const selector = `input[name=question${questionNumber}]:checked`;
+                    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+                    // if answer is correct
+                    if (userAnswer === currentQuestion.cA) {
+                        // add to the number of correct answers
+                        numCorrect++;
+
+                        // color the answers green
+                        answerContainers[questionNumber].style.color = 'lightgreen';
+                    }
+                    // if answer is wrong or blank
+                    else {
+                        // color the answers red
+                        answerContainers[questionNumber].style.color = 'red';
+                    }
+                });
+
+                // show number of correct answers out of total
+                resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+                return numCorrect;
+            }
+
+            const quizContainer = document.getElementById('quiz');
+            const resultsContainer = document.getElementById('results');
+            const submitButton = document.getElementById('submit');
+            const myQuestions = [
+    {question: '"Small is Beautifull" is a book written by _____.',answers: {a : 'E. F. Schumacher', b : 'M.K. Gandhi', c : 'Duke Metternich', d : 'Guiseppe Mazzini', },cA: 'a'},{question: 'The per-capita income of different countries is counted in which currency?',answers: {a : 'Rupees', b : 'Pounds', c : 'US Dollars', d : 'Canadian Dollars', },cA: 'c'},{question: 'Rabi crops are?',answers: {a : 'sown-winter , harvested-summer', b : 'sown-summer , harvested-winter', c : 'sown-during rainy season , harvested-winter', d : 'None of the above', },cA: 'a'},{question: 'ATM BANK is an example of',answers: {a : 'Tertiary Sector', b : 'Primary Sector', c : 'Basic sector', d : 'Secondary Sector', },cA: 'a'},{question: 'Which of the following IS NOT a step taken towards decentralisation?',answers: {a : 'At least one-third of all positions are reserved for women.', b : 'The State governments are required to share some powers and revenue with local government bodies. The nature of sharing varies from State to State', c : 'It is constitutionally mandatory to hold regular elections to local government bodies', d : 'All people above the age of 18 should mandatory vote', },cA: 'd'},{question: 'The French revolutionaries declared that the mission and destiny of the French nation was',answers: {a : 'to conquer the people of Europe', b : 'to liberate the people of Europe from despotism', c : 'to strengthen absolute monarchies in all countries of Europe', d : 'to propagate the ideals of rick rolling', },cA: 'b'},{question: 'In which part of Sri Lanka are the Sri Lankan Tamils concentrated',answers: {a : 'North and South', b : 'East and West', c : 'North and west', d : 'North and East', },cA: 'd'},{question: 'Grazing ground under a village comes in which type of resource',answers: {a : 'Individual resource', b : 'Community Owned Resource', c : 'National Resource', d : 'Apartment Owned Resource', },cA: 'b'},{question: 'The state which violently demanded tthat the use of English for official purpose should be continued is:',answers: {a : 'Kerala', b : 'Karnataka', c : 'Tamil Nadu', d : 'Andhra Pradesh', },cA: 'c'},{question: 'The minority French-speaking community was relatively _______ & ________',answers: {a : 'poor and weak', b : 'poor but powerful', c : 'rich but weak', d : 'rich and powerful', },cA: 'd'},{question: 'The ideas of la _____ and le _______ emphasized the notion of a united community enjoying equal rights under a constitution.',answers: {a : 'patre,citoyen', b : 'citoyen,patre', c : 'patrie,citoyen', d : 'citoyen,patrie', },cA: 'c'},{question: 'Which of the following set of countries come under coming together federation?',answers: {a : 'India, Spain, United States of America', b : 'India, Spain, Belgium', c : 'USA, Switzerland, and Australia', d : 'India, Spain, France', },cA: 'c'},{question: 'Which country began to use language as a weapon of national resistance',answers: {a : 'Turkey', b : 'Germany', c : 'Poland', d : 'India', },cA: 'c'},{question: 'The land which is left uncultivated for more than five agricultural years is called: ',answers: {a : 'Grazing land', b : 'Fallow land', c : 'Culturable wasteland', d : 'Barren and waste land', },cA: 'c'},{question: 'Which of the following can be considered as most important when comparing countries',answers: {a : 'Income', b : 'Population', c : 'KCC', d : 'Average Income', },cA: 'd'},{question: 'The Human Development Report (HDR) published by UNDP compares countries based on literacy rate, health status and:',answers: {a : 'National income', b : 'Per-capita income', c : 'Both (a) and (b)', d : 'None of the above', },cA: 'b'},{question: 'Which state of India has the highest net sown area in India?',answers: {a : 'Bihar', b : 'Uttar Pradesh', c : 'Punjab', d : 'West Bengal', },cA: 'c'},{question: 'Which among the following workers are not very productive in tertiary sector?',answers: {a : 'Educated and trainged professionals', b : 'Repiar persons and daily wage earners', c : 'People in defence services', d : 'People working in health centres and hospitals', },cA: 'b'},{question: 'Which region was ruled over by \'The Habsburg Empire\'?',answers: {a : 'Austria-Hungary', b : 'France-Netherlands', c : 'Spain-Portugal', d : 'Scotland-Ireland', },cA: 'a'},{question: 'Identify the crop: i) It is a kharif crop which requires temperature between 21°C to 27°C and grows well in old alluvial soil. ii) Use of modern inputs such as HYV seeds, fertilisers and irrigation have contributed to the increasing production of this crop.',answers: {a : 'Wheat', b : 'Barley', c : 'Maize', d : 'Sugarcane', },cA: 'c'},{question: '_______ is the category of land left uncultivated for more than 5 agriculture years',answers: {a : 'Permanent pastures', b : 'Current fallow', c : 'Cultruable waste land', d : 'Other than current fallow', },cA: 'c'},{question: 'Capital of Belgium',answers: {a : 'Wallonia', b : 'Nerherlands', c : 'Paris', d : 'Brussels', },cA: 'd'},{question: 'System of \'checks and balances\' is another name for which one of the following power-sharing arrangements?',answers: {a : 'Among different social groups', b : 'Vertical division of power', c : 'Horizontal division of power', d : 'Power sharing in form of political parties, pressure groups and governments.', },cA: 'c'},{question: 'Ratio of sinhala speaking and tamil speaking in sri lanka is:',answers: {a : '20-80', b : '50-50', c : '70-30', d : '80-20', },cA: 'd'},{question: 'The Union Government has power to legislate on ______ subjects which don\'t fall in any of the 3 lists.',answers: {a : 'important', b : 'residuary', c : 'exceptional', d : 'unique', },cA: 'b'},{question: 'Assertion(A): Mazzini\'s relentless opposition to monarchy and his vision of democratic republics frightened the conservatives. Reason (R)Metternich described Mazzini as \'the most dangerous enemy of social order\'',answers: {a : 'Both A and R are true and R explains A.', b : 'Both A and R are true but R does not explain A.', c : 'A is true but R is false', d : 'A is false but R is true', },cA: 'a'},{question: 'Which country became full-fledged territorial state in Europe in the year 1789?',answers: {a : 'Germany', b : 'France', c : 'England', d : 'Spain', },cA: 'b'},{question: 'Which of the following is not an example of tertiary sector?',answers: {a : 'Banking', b : 'Transport', c : 'Trade', d : 'Forestry', },cA: 'd'},{question: 'The first and major test for democratic politics in India was:',answers: {a : 'Caste problem', b : 'Language problem', c : 'Problems related to union territories', d : 'Creation of linguistic state', },cA: 'd'},{question: 'Which of the following was the main focus of our First Five-Year plan?',answers: {a : 'Cost of food grains', b : 'Land Reforms', c : 'Industrialisation', d : 'Globalisation', },cA: 'b'},{question: 'Laterite\' has been derived from the Latin word ________?',answers: {a : 'latter', b : 'later', c : 'lather', d : 'lator', },cA: 'b'},{question: 'Who was called \'Bismarck of Italy\'?',answers: {a : 'Otto von Bismarck', b : 'Giuseppe Mazzini', c : 'Victor Emmanuel II', d : 'Giueseppa Garibaldi', },cA: 'd'},{question: 'Which of the following is not the form of power sharing?',answers: {a : 'Vertical division of power', b : 'Horizontal division of power', c : 'Division of power between people', d : 'Division of power among social groups', },cA: 'c'},{question: 'The buxa Tiger reserve is threatened by ______',answers: {a : 'Nuclear Power plant', b : 'Industrial Pollution', c : 'Mining', d : 'Court Orders', },cA: 'c'},{question: 'Who was the first Prime Minister of Italy?',answers: {a : 'Garibaldi', b : 'de Cavour', c : 'Mazzini', d : 'Emmanuel II', },cA: 'b'},{question: 'What proportion of population speaks French in the capital city of Belgium?',answers: {a : '60%', b : '70%', c : '75%', d : '80%', },cA: 'd'},{question: 'Assertion: Dutch vs French controversies are to be resolved by the community government. Reason : The community government is responsible for all controversies that come up in Dutch or French dominating areas.',answers: {a : 'Both A and R are true and R explains A.', b : 'Both A and R are true but R does not explain A.', c : 'A is true but R is false', d : 'A is false but R is true', },cA: 'c'},{question: 'Official language of Sri Lanka - ',answers: {a : 'No official Language', b : 'Sinhala', c : 'Sinhala and Tamil', d : 'Only Tamil', },cA: 'b'},{question: 'What is the meaning of, \'Qu\'est-ce qu\'une nation\'?',answers: {a : 'What is the purpose of a nation?', b : 'What is the quality of a nation?', c : 'What is the population of a nation?', d : 'What is a nation?', },cA: 'd'},{question: 'Under which category does tidal energy fall in?',answers: {a : 'Replenishable', b : 'Human-made', c : 'Abiotic', d : 'Non-renewable', },cA: 'a'},{question: 'What is the correct definition of \'average income\'.',answers: {a : 'Total income of a country', b : 'Income of only employed people', c : 'Same as per capita income', d : 'Includes the value of property held', },cA: 'c'},{question: 'What is plebicite?',answers: {a : 'A direct vote to elect the representatives of a small area', b : 'A direct vote to pass a bill.', c : 'A law enforced during wartime.', d : 'A direct vote by which all the people of a region are asked to accept or reject a proposal', },cA: 'd'},{question: 'Which does not fall under unorganized sector?',answers: {a : 'Farmer irrigating his field', b : 'Daily-wage labourer working for a contractor', c : 'Doctor in a hospital treating a patient', d : 'Handloom weaver working on a loom in her house', },cA: 'b'},{question: 'Belgium shifted from unitary government to',answers: {a : 'Democratic', b : 'Federal', c : 'Authoriarian', d : 'NOTA', },cA: 'b'},{question: 'Adequate provision of basic health and educational facilities has improved living standards in which state.',answers: {a : 'Maharashtra', b : 'Kerala', c : 'Bihar', d : 'Tamil Nadu', },cA: 'b'},{question: 'In which year Frédéric Sorrieu prepared the series of four paints',answers: {a : '1848', b : '1904', c : '1956', d : '1846', },cA: 'a'},{question: 'Which among the following regions of India experience low rainfall and is drought prone?',answers: {a : 'Rajasthan', b : 'Gujarat', c : 'Bihar', d : 'Telangana', },cA: 'a'},{question: 'The village of _______ has shown that it is possible to reverse land degradation.',answers: {a : 'Sukhamanjali', b : 'Sukhomajri', c : 'Sukkumara', d : 'Pranav & Co.', },cA: 'b'},{question: 'Ramu works in a farm with 4 others from his village. In an year a set of village refugees came in from the neighbouring village and undertook job along with ramu in the farm. As a result 6 people now work in the farm which was going well when just 4 people were working. The village adult literacy teacher told to ramu that he was facing _______.',answers: {a : 'Unemployment', b : 'OverEmployment', c : 'Underemployment', d : 'Hidden employment', },cA: 'd'},{question: 'MGNREGA guarantees job to the poor for',answers: {a : '100 days', b : '90 days', c : '60 days', d : '50 days', },cA: 'a'},];
+
+            buildQuiz();
+
+            // Event listeners
+            submitButton.addEventListener('click', showResults);
+            totalMinutes = myQuestions.length/2
+            minute = 90
+            second = 0
+
+            function updateTimer() {
+                
+                
+                if (minute === 0 && second === 0) {
+                    console.log("minute is 0");
+                    stopTimer();
+                    
+                }
+                if (second === 0) {
+                    minute -= 1
+                    second = 60
+                }
+                second -= 1
+                timer = document.getElementById("timer");
+                timer.innerHTML = `${minute} : ${second}`
+            }
+
+            
+
+            intervalId = setInterval(updateTimer, 1000);    
+
+            function stopTimer(){
+                console.log("Came here")
+                clearInterval(intervalId);
+                blankContainer();
+            }
+                </script>
+            </body>
+            </html>

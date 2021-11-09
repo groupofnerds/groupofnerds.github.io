@@ -81,7 +81,7 @@ body {
 }
 .bottom-section {
     font-family: 'Press Start 2P', cursive;
-    font-size: larger;
+    font-size: 50px;
     display: flex;
     align-items: center;
     justify-content: center;

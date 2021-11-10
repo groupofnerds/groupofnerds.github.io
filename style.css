@@ -17,10 +17,10 @@ body {
 
 
 :root {
-    --primary: #ff7227;
-    --secondary: #946f6c;
-    --tertiary: #ffffff;
-    --fourth: #5e250b;
+    --primary: #F23041;
+    --secondary: #25A6D9;
+    --tertiary: #BF3F61;
+    --fourth: #040D08;
 }
 
 .title {
@@ -71,8 +71,42 @@ body {
 .qps, .res, .bottom-section {
     border: 2px solid var(--primary);
     border-radius: 25px;
-    background-color: var(--primary);
+    background-color: var(--secondary);
 }
+
+.qps ul{
+    height: 100%;
+    align-items: center;
+    align-content: center;
+    padding: 10px;
+    justify-content: center;
+    display: flex;
+    border-radius: 25px;
+}
+
+.qps ul li, .res ul li {
+    background-color: var(--tertiary); 
+    border-radius: 25px;
+    border: 3px solid #040D08;
+}
+
+.res ul{
+    padding: 10px;
+}
+
+.res ul li {
+    margin-top: 10px;
+}
+
+.res ul li:hover{
+    background-color: white;
+}
+
+.qps ul li:hover{
+    background-color: white;
+}
+
+
 
 .top-section {
     display: flex;
